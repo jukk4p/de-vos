@@ -352,8 +352,7 @@ const HomePage = ({ openWhatsApp }: HomeProps) => {
               { path: '/galeria/pelado1.webp', alt: 'Corte Degradado de Caballero' },
               { path: '/galeria/pelado2.webp', alt: 'Perfilado de Barba y Estilo' },
               { path: '/galeria/pelado3.webp', alt: 'Corte Clásico Masculino' },
-              { path: '/galeria/pelado4.webp', alt: 'Corte Estilo Junior' },
-              { path: '/galeria/local.webp', alt: 'Fachada Barbería De-Vos' }
+              { path: '/galeria/pelado4.webp', alt: 'Corte Estilo Junior' }
             ].map((img, index) => (
               <div 
                 key={index} 
