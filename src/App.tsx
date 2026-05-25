@@ -11,6 +11,7 @@ import ReservePage from './pages/Reserve';
 import PrivacyPage from './pages/Privacy';
 import LegalPage from './pages/Legal';
 import CookiesPage from './pages/Cookies';
+import CookiesBanner from './components/CookiesBanner';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -69,6 +70,7 @@ const App = () => {
         </div>
 
         <WhatsAppFAB openWhatsApp={openWhatsApp} />
+        <CookiesBanner />
       </main>
     </Router>
   );
