@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Manrope:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #141313;
+    --surface: #141313;
+    --accent: #D1A15E; /* Latón Cepillado (Industrial Luxury) - WCAG AAA 7.5:1 */
+    --primary: #c9c6c5;
+    --on-surface: #e5e2e1;
+  }
+
+  body {
+    @apply bg-background text-primary font-sans antialiased overflow-x-hidden selection:bg-accent selection:text-background;
+    background-color: var(--background);
+    color: var(--on-surface);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-ultra-tight text-wrap-balance;
+  }
+
+  /* Stitch Display Large */
+  .display-lg {
+    @apply font-heading text-[42px] md:text-[64px] lg:text-[80px] font-[800] leading-[1.05] tracking-ultra-tight;
+  }
+
+  /* Stitch Headline Large */
+  .headline-lg {
+    @apply font-heading text-[28px] md:text-[32px] font-[700] leading-[1.2] tracking-[0.01em];
+  }
+}
+
+@layer components {
+  .glassmorphism {
+    @apply bg-surface-container/60 backdrop-blur-xl border border-white/5 shadow-2xl;
+  }
+
+  .text-wrap-balance {
+    text-wrap: balance;
+  }
+
+  /* Industrial Precision Dividers */
+  .divider-industrial {
+    @apply h-px w-full bg-outline/20 my-8;
+  }
+
+  /* Metallic Accent Glow */
+  .accent-glow {
+    box-shadow: 0 0 30px rgba(233, 195, 73, 0.15);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/5 rounded-full hover:bg-accent/20 transition-colors;
+}
+
+.transition-smooth {
+  transition-property: transform, opacity, background-color, border-color, color, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 400ms;
+}
