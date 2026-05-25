@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -11,7 +11,8 @@ import ReservePage from './pages/Reserve';
 import PrivacyPage from './pages/Privacy';
 import LegalPage from './pages/Legal';
 import CookiesPage from './pages/Cookies';
-import CookiesBanner from './components/CookiesBanner';
+
+const CookieBanner = React.lazy(() => import('./components/cookies/CookieBanner'));
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -70,7 +71,9 @@ const App = () => {
         </div>
 
         <WhatsAppFAB openWhatsApp={openWhatsApp} />
-        <CookiesBanner />
+        <Suspense fallback={null}>
+          <CookieBanner />
+        </Suspense>
       </main>
     </Router>
   );
