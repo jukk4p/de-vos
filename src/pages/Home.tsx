@@ -108,7 +108,7 @@ const HomePage = () => {
           <div className="hero-element flex flex-col sm:flex-row gap-4 justify-center items-center md:max-w-xl mx-auto">
             <Link
               to="/reservar"
-              className="group relative flex items-center justify-center gap-4 bg-accent text-background font-extrabold text-[12px] px-8 py-6 rounded-none hover:bg-white transition-smooth shadow-2xl accent-glow w-full md:max-w-[280px] whitespace-nowrap"
+              className="group relative flex items-center justify-center gap-4 bg-accent text-background font-extrabold text-[12px] px-8 py-6 rounded-none hover:bg-white transition-smooth shadow-2xl accent-glow w-full max-w-[280px] whitespace-nowrap"
               aria-label="Reservar cita ahora"
             >
               <Calendar className="w-5 h-5 shrink-0" />
@@ -117,9 +117,11 @@ const HomePage = () => {
             </Link>
             <Link
               to="/servicios"
-              className="group relative flex items-center justify-center gap-4 bg-transparent border border-white/20 text-white font-extrabold text-[12px] px-8 py-6 rounded-none hover:bg-white hover:text-background transition-smooth w-full md:max-w-[280px] uppercase tracking-industrial whitespace-nowrap"
+              className="group relative flex items-center justify-center gap-4 bg-transparent border border-white/20 text-white font-extrabold text-[12px] px-8 py-6 rounded-none hover:bg-white hover:text-background transition-smooth w-full max-w-[280px] uppercase tracking-industrial whitespace-nowrap"
             >
-              Ver servicios →
+              <Scissors className="w-5 h-5 shrink-0" />
+              <span className="uppercase tracking-industrial whitespace-nowrap">Ver servicios</span>
+              <ChevronRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-smooth" />
             </Link>
           </div>
         </div>

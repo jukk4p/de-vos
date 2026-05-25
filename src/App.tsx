@@ -10,6 +10,7 @@ import AboutPage from './pages/About';
 import ReservePage from './pages/Reserve';
 import PrivacyPage from './pages/Privacy';
 import LegalPage from './pages/Legal';
+import CookiesPage from './pages/Cookies';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -61,6 +62,7 @@ const App = () => {
           <Route path="/reservar" element={<ReservePage />} />
           <Route path="/privacidad" element={<PrivacyPage />} />
           <Route path="/aviso-legal" element={<LegalPage />} />
+          <Route path="/cookies" element={<CookiesPage />} />
         </Routes>
 
         <Footer openWhatsApp={openWhatsApp} />

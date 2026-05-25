@@ -252,9 +252,12 @@ const ContactPage = () => {
             <span className="text-[10px] text-primary/30 uppercase tracking-industrial font-bold block mb-4">¿Prefieres agendar al instante?</span>
             <button 
               onClick={openWhatsApp}
-              className="w-full bg-white/5 border border-white/10 text-white font-extrabold text-xs uppercase tracking-industrial py-5 hover:bg-white hover:text-background transition-smooth flex items-center justify-center gap-3"
+              className="w-full max-w-[280px] mx-auto bg-white/5 border border-white/10 text-white font-extrabold text-xs uppercase tracking-industrial py-5 hover:bg-white hover:text-background transition-smooth flex items-center justify-center gap-3"
             >
-              Escríbenos por WhatsApp →
+              <svg viewBox="0 0 16 16" className="w-4 h-4 fill-current shrink-0" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.93a7.904 7.904 0 0 0 1.08 3.971L0 16l4.232-1.11a7.9 7.9 0 0 0 3.758.955h.005c4.368 0 7.928-3.56 7.933-7.93a7.88 7.88 0 0 0-2.327-5.589zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.562 6.562 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.69-4.82c-.202-.1-1.196-.59-1.381-.66-.184-.069-.319-.103-.453.1-.133.202-.516.66-.633.793-.118.133-.235.148-.438.047a5.556 5.556 0 0 1-1.63-1.008 5.86 5.86 0 0 1-1.127-1.405c-.12-.202-.012-.311.089-.41.09-.09.202-.236.3-.354.099-.118.133-.2.202-.338.069-.138.035-.26-.017-.362-.052-.1-.453-1.096-.622-1.503-.164-.397-.333-.342-.453-.349-.117-.006-.25-.008-.383-.008-.134 0-.353.05-.537.25-.185.202-.707.69-.707 1.684 0 .994.723 1.954.823 2.087.1.133 1.422 2.17 3.447 3.04.482.207.859.33 1.152.424.484.154.925.132 1.272.08.387-.058 1.196-.49 1.365-1.036.17-.546.17-1.012.12-1.11-.049-.098-.184-.148-.387-.25z"/>
+              </svg>
+              Escríbenos por WhatsApp
             </button>
           </div>
         </div>

@@ -20,6 +20,18 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
   // Cerrar menú al cambiar de ruta
   useEffect(() => setIsOpen(false), [location]);
 
+  // Bloquear scroll vertical del body cuando el menú móvil está abierto
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   // Navbar simplificada en la ruta de conversión /reservar
   const isReservePage = location.pathname === '/reservar';
   if (isReservePage) {
@@ -107,7 +119,7 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-40 bg-background md:hidden transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`fixed inset-0 z-40 bg-[#141313] md:hidden transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <div className="flex flex-col h-full pt-32 pb-12 px-8">
           {/* Menu Links */}
           <div className="flex flex-col gap-8 text-3xl font-heading font-black tracking-industrial uppercase">
