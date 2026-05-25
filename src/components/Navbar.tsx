@@ -36,7 +36,7 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
             </div>
             <span className="font-heading text-2xl font-black tracking-industrial uppercase text-white">De-Vos</span>
           </div>
-          <span className="text-[9px] text-accent font-black tracking-[0.3em] uppercase mt-2 pl-11 opacity-60">Precisión Industrial</span>
+          <span className="text-[9px] text-accent font-black tracking-[0.3em] uppercase mt-2 pl-11 opacity-60">Barbería · Coria del Río</span>
         </Link>
 
         {/* Desktop Links */}

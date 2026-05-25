@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Phone, MapPin, Clock, Star, Calendar, Scissors, UserCheck, ChevronRight, Award, ShieldCheck } from 'lucide-react';
+import { Phone, MapPin, Clock, Star, Calendar, Scissors, UserCheck, ChevronRight, Award, ShieldCheck, Search } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -108,16 +108,23 @@ const HomePage = ({ openWhatsApp }: HomeProps) => {
             Elevando el estándar de la barbería tradicional en Coria del Río. <br className="hidden md:block" /> Tu barbería de confianza con el mejor trato personalizado.
           </p>
 
-          <div className="hero-element flex flex-col sm:flex-row gap-6 justify-center">
+          {/* === NUEVO: Botones Hero ajustados y alineados === */}
+          <div className="hero-element flex flex-col sm:flex-row gap-4 justify-center items-center md:max-w-xl mx-auto">
             <button 
               onClick={openWhatsApp}
-              className="group relative flex items-center justify-center gap-4 bg-accent text-background font-extrabold text-[12px] px-14 py-6 rounded-none hover:bg-white transition-smooth shadow-2xl accent-glow"
+              className="group relative flex items-center justify-center gap-4 bg-accent text-background font-extrabold text-[12px] px-14 py-6 rounded-none hover:bg-white transition-smooth shadow-2xl accent-glow w-full md:max-w-[280px]"
               aria-label="Reservar cita ahora"
             >
               <Calendar className="w-5 h-5" />
               <span className="uppercase tracking-industrial">Agendar Cita</span>
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-smooth" />
             </button>
+            <Link 
+              to="/servicios"
+              className="group relative flex items-center justify-center gap-4 bg-transparent border border-white/20 text-white font-extrabold text-[12px] px-14 py-6 rounded-none hover:bg-white hover:text-background transition-smooth w-full md:max-w-[280px] uppercase tracking-industrial"
+            >
+              Ver servicios →
+            </Link>
           </div>
         </div>
 
@@ -156,7 +163,7 @@ const HomePage = ({ openWhatsApp }: HomeProps) => {
                <span className="text-accent text-xs font-bold uppercase tracking-industrial">Nuestro Compromiso</span>
              </div>
             <h2 className="headline-lg text-5xl md:text-7xl text-white uppercase mb-12">
-              Un espacio de <br/><span className="text-primary/20">estética masculina</span>
+              Un espacio de <br/><span className="text-white/35">estética masculina</span>
             </h2>
             <div className="space-y-12">
               {[
@@ -175,9 +182,9 @@ const HomePage = ({ openWhatsApp }: HomeProps) => {
             </div>
           </div>
           
-          <div className="relative reveal-up">
+          <div className="relative reveal-up w-full lg:w-[90%] mx-auto">
             <div className="absolute -inset-10 border border-white/5 -z-10 translate-x-10 translate-y-10" />
-            <div className="aspect-[3/4] overflow-hidden border border-white/10 grayscale-[0.3] hover:grayscale-0 transition-smooth duration-1000">
+            <div className="h-[400px] w-full overflow-hidden border border-white/10 grayscale-[0.3] hover:grayscale-0 transition-smooth duration-1000">
               <img 
                 src="/galeria/local.webp" 
                 alt="Maestría en De-Vos" 
@@ -243,7 +250,7 @@ const HomePage = ({ openWhatsApp }: HomeProps) => {
                     </div>
                   </div>
                   
-                  <p className="text-primary/40 text-sm leading-relaxed mb-auto font-medium max-w-[200px]">
+                  <p className="text-white/80 text-sm leading-relaxed mb-auto font-medium max-w-[200px]">
                     {srv.desc}
                   </p>
 
@@ -273,7 +280,7 @@ const HomePage = ({ openWhatsApp }: HomeProps) => {
             <div className="flex items-center gap-4 bg-white/5 px-6 py-3 border border-white/10 mb-2 whitespace-nowrap">
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 text-accent fill-accent" />
+                  <Star key={i} className="w-3 h-3 text-[#FBBC04] fill-[#FBBC04]" />
                 ))}
               </div>
               <span className="text-[10px] font-black text-white uppercase tracking-widest">4.8 / 5 en Google</span>
@@ -286,13 +293,15 @@ const HomePage = ({ openWhatsApp }: HomeProps) => {
                 name: "Juan M.", 
                 text: "El mejor degradado de Coria. La atención al detalle de los chavales es de otro nivel. Un sitio de 10.", 
                 rating: 5,
-                sub: "Cliente Frecuente"
+                sub: "Cliente Frecuente",
+                date: "Hace 1 semana"
               },
               { 
                 name: "Carlos R.", 
                 text: "Llevo a mis hijos desde hace años y no quieren ir a otro sitio. Paciencia infinita y resultados impecables.", 
                 rating: 5,
-                sub: "Padre de familia"
+                sub: "Padre de familia",
+                date: "Hace 2 semanas"
               }
             ].map((test, i) => (
               <div key={i} className="stagger-card group relative p-10 md:p-16 bg-surface-low border border-white/5 hover:border-accent/20 transition-smooth">
@@ -300,13 +309,16 @@ const HomePage = ({ openWhatsApp }: HomeProps) => {
                   <Scissors className="w-20 h-20 text-white" />
                 </div>
                 
-                <div className="flex gap-1 mb-10">
-                  {[...Array(test.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-accent fill-accent" />
-                  ))}
+                <div className="flex items-center gap-3 mb-10">
+                  <span className="text-xs font-bold text-white/50 uppercase tracking-widest mr-2">Google</span>
+                  <div className="flex gap-1">
+                    {[...Array(test.rating)].map((_, idx) => (
+                      <Star key={idx} className="w-4 h-4 text-[#FBBC04] fill-[#FBBC04]" />
+                    ))}
+                  </div>
                 </div>
 
-                <blockquote className="text-white text-2xl md:text-3xl font-medium leading-tight mb-12 tracking-tight italic">
+                <blockquote className="text-white text-2xl md:text-3xl font-medium leading-tight mb-12 tracking-tight not-italic">
                   "{test.text}"
                 </blockquote>
 
@@ -316,7 +328,41 @@ const HomePage = ({ openWhatsApp }: HomeProps) => {
                   </div>
                   <div>
                     <p className="text-white text-xs font-black uppercase tracking-industrial mb-1">{test.name}</p>
-                    <p className="text-accent/40 text-[9px] font-bold uppercase tracking-[0.2em]">{test.sub}</p>
+                    <p className="text-primary/40 text-[9px] font-bold uppercase tracking-[0.2em]">{test.sub}</p>
+                    <p className="text-white/30 text-[9px] font-bold uppercase tracking-widest mt-1">{test.date}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* === NUEVO: Sección Galería de Trabajos === */}
+      <section className="py-32 bg-background border-t border-white/5 px-6 reveal-up">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <span className="text-accent text-xs font-bold uppercase tracking-industrial mb-4 block">Cada corte, una obra</span>
+            <h2 className="headline-lg text-4xl md:text-6xl text-white uppercase">Nuestro Trabajo</h2>
+            <div className="w-20 h-px bg-accent mx-auto mt-6" />
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+              <div 
+                key={num} 
+                className="group relative aspect-square overflow-hidden border border-white/5 bg-surface-low shadow-lg"
+              >
+                <img 
+                  src={`/assets/galeria/galeria-${num}.jpg`} 
+                  alt={`Corte de pelo ${num}`} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                {/* Hover overlay with search/magnifying glass icon */}
+                <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                  <div className="w-12 h-12 border border-accent flex items-center justify-center text-accent scale-75 group-hover:scale-100 transition-transform duration-300">
+                    <Search className="w-5 h-5" />
                   </div>
                 </div>
               </div>

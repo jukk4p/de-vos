@@ -73,11 +73,23 @@ const ServicesPage = () => {
       <div className="space-y-40">
         {services.map((group, idx) => (
           <div key={idx} className="service-group">
-            <div className="flex items-center gap-10 mb-20">
-               <span className="text-accent font-heading font-black text-2xl opacity-20">0{idx+1}</span>
-              <h2 className="headline-lg text-4xl md:text-6xl text-white uppercase shrink-0">
-                {group.category}
-              </h2>
+            {/* === NUEVO: Cabecera con imagen y overlay para la categoría === */}
+            <div className="relative h-[200px] w-full overflow-hidden border border-white/5 mb-12 group">
+              <img 
+                src={idx === 0 ? "/assets/servicios/categoria-corte.jpg" : "/assets/servicios/categoria-junior.jpg"} 
+                alt={group.category}
+                className="w-full h-full object-cover opacity-50 transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-black/40 to-black/60" />
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+                <span className="text-accent font-heading font-black text-lg opacity-60 mb-2">0{idx+1}</span>
+                <h2 className="display-sm text-3xl md:text-5xl text-white uppercase tracking-wider">
+                  {group.category}
+                </h2>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-10 mb-16">
               <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
             </div>
             
