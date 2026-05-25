@@ -18,38 +18,43 @@ const CookieBanner = () => {
     closeModal,
   } = useCookieConsent();
 
+  // isMounted controls DOM presence; stays true during exit animation
   const [isMounted, setIsMounted] = useState(false);
   const bannerRef = useRef<HTMLDivElement>(null);
 
-  // Sync mount state with hook visibility state
+  // Show when consent is pending
   useEffect(() => {
     if (showBanner) {
       setIsMounted(true);
     }
   }, [showBanner]);
 
-  // Entrance GSAP animation with 800ms delay to prevent LCP clash
+  // Entrance animation — 800ms delay to avoid competing with LCP
+  // NOTE: useGSAP from @gsap/react requires options as an object, not a plain array
   useGSAP(() => {
-    if (isMounted && bannerRef.current) {
-      // Set initial state below screen
-      gsap.set(bannerRef.current, { yPercent: 100 });
-      
-      const timer = setTimeout(() => {
-        gsap.to(bannerRef.current, {
-          yPercent: 0,
-          duration: 0.5,
-          ease: 'power2.out',
-        });
-      }, 800);
-      
-      return () => clearTimeout(timer);
+    if (!isMounted || !bannerRef.current) return;
+
+    // Start hidden below viewport (no conflicting Tailwind transform class)
+    gsap.set(bannerRef.current, { yPercent: 100 });
+
+    const timer = setTimeout(() => {
+      gsap.to(bannerRef.current, {
+        yPercent: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+      });
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, { dependencies: [isMounted], revertOnUpdate: true });
+
+  // Exit animation — runs before unmounting or saving
+  const exitAndRun = (action: () => void) => {
+    if (!bannerRef.current) {
+      action();
+      setIsMounted(false);
+      return;
     }
-  }, [isMounted]);
-
-  const { contextSafe } = useGSAP({ scope: bannerRef });
-
-  // Exit animation wrapper before executing consent action
-  const runExitAndAction = contextSafe((action: () => void) => {
     gsap.to(bannerRef.current, {
       yPercent: 100,
       duration: 0.35,
@@ -59,19 +64,12 @@ const CookieBanner = () => {
         setIsMounted(false);
       },
     });
-  });
-
-  const handleAcceptAll = () => {
-    runExitAndAction(acceptAll);
   };
 
-  const handleRejectAll = () => {
-    runExitAndAction(rejectAll);
-  };
-
-  const handleSaveCustom = (customPrefs: Omit<typeof preferences, 'necessary'>) => {
-    runExitAndAction(() => saveCustom(customPrefs));
-  };
+  const handleAcceptAll = () => exitAndRun(acceptAll);
+  const handleRejectAll = () => exitAndRun(rejectAll);
+  const handleSaveCustom = (customPrefs: Omit<typeof preferences, 'necessary'>) =>
+    exitAndRun(() => saveCustom(customPrefs));
 
   if (!isMounted) return null;
 
@@ -79,7 +77,7 @@ const CookieBanner = () => {
     <>
       <div
         ref={bannerRef}
-        className="fixed bottom-0 left-0 right-0 w-full z-[9999] bg-[#1a1a1a] border-t border-[#D4A017]/30 p-6 md:px-12 md:py-6 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-col md:flex-row md:items-center md:justify-between gap-6 translate-y-full animate-gpu"
+        className="fixed bottom-0 left-0 right-0 w-full z-[9999] bg-[#1a1a1a] border-t border-[#D4A017]/30 p-6 md:px-12 md:py-6 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex flex-col md:flex-row md:items-center md:justify-between gap-6"
         role="dialog"
         aria-label="Aviso de cookies"
       >
@@ -107,14 +105,14 @@ const CookieBanner = () => {
           >
             Configurar
           </button>
-          
+
           <button
             onClick={handleRejectAll}
             className="w-full sm:w-auto text-primary/60 hover:text-white font-extrabold text-[10px] uppercase tracking-industrial transition-smooth cursor-pointer py-3 px-4 text-center focus:outline-none focus:ring-1 focus:ring-[#D4A017]"
           >
             Rechazar
           </button>
-          
+
           <button
             onClick={handleAcceptAll}
             className="w-full sm:w-auto px-6 py-3 bg-[#D4A017] hover:bg-[#B8860B] text-black font-extrabold text-[10px] uppercase tracking-industrial rounded-none transition-smooth cursor-pointer text-center whitespace-nowrap focus:outline-none focus:ring-1 focus:ring-black"
