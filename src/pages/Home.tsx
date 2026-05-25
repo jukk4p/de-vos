@@ -348,14 +348,20 @@ const HomePage = ({ openWhatsApp }: HomeProps) => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+            {[
+              { path: '/galeria/pelado1.webp', alt: 'Corte Degradado de Caballero' },
+              { path: '/galeria/pelado2.webp', alt: 'Perfilado de Barba y Estilo' },
+              { path: '/galeria/pelado3.webp', alt: 'Corte Clásico Masculino' },
+              { path: '/galeria/pelado4.webp', alt: 'Corte Estilo Junior' },
+              { path: '/galeria/local.webp', alt: 'Fachada Barbería De-Vos' }
+            ].map((img, index) => (
               <div 
-                key={num} 
+                key={index} 
                 className="group relative aspect-square overflow-hidden border border-white/5 bg-surface-low shadow-lg"
               >
                 <img 
-                  src={`/assets/galeria/galeria-${num}.jpg`} 
-                  alt={`Corte de pelo ${num}`} 
+                  src={img.path} 
+                  alt={img.alt} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />

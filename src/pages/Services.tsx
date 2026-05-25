@@ -76,7 +76,7 @@ const ServicesPage = () => {
             {/* === NUEVO: Cabecera con imagen y overlay para la categoría === */}
             <div className="relative h-[200px] w-full overflow-hidden border border-white/5 mb-12 group">
               <img 
-                src={idx === 0 ? "/assets/servicios/categoria-corte.jpg" : "/assets/servicios/categoria-junior.jpg"} 
+                src={idx === 0 ? "/galeria/pelado1.webp" : "/galeria/pelado4.webp"} 
                 alt={group.category}
                 className="w-full h-full object-cover opacity-50 transition-transform duration-700 group-hover:scale-105"
               />
