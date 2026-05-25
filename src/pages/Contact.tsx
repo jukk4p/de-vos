@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { MapPin, Phone, Clock, ChevronRight, MessageSquare, Calendar } from 'lucide-react';
+import { MapPin, Phone, Clock, ChevronRight, Calendar } from 'lucide-react';
 
 const ContactPage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
