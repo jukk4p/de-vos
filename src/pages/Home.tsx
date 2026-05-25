@@ -348,7 +348,9 @@ const HomePage = () => {
               { path: '/galeria/pelado1.webp', alt: 'Corte Degradado de Caballero' },
               { path: '/galeria/pelado2.webp', alt: 'Perfilado de Barba y Estilo' },
               { path: '/galeria/pelado3.webp', alt: 'Corte Clásico Masculino' },
-              { path: '/galeria/pelado4.webp', alt: 'Corte Estilo Junior' }
+              { path: '/galeria/pelado4.webp', alt: 'Corte Estilo Junior' },
+              { path: '/galeria/pelado5.png', alt: 'Corte Moderno Mid-Fade' },
+              { path: '/galeria/pelado6.png', alt: 'Arreglo de Barba Texturizado' }
             ].map((img, index) => (
               <div
                 key={index}

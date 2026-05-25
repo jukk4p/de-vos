@@ -11,7 +11,9 @@ const GalleryPage = () => {
     { path: '/galeria/pelado1.webp', alt: 'Corte Caballero Degradado', category: 'caballero' },
     { path: '/galeria/pelado2.webp', alt: 'Perfilado de Barba de Precisión', category: 'barba' },
     { path: '/galeria/pelado3.webp', alt: 'Corte Clásico Masculino', category: 'caballero' },
-    { path: '/galeria/pelado4.webp', alt: 'Corte Moderno Junior', category: 'junior' }
+    { path: '/galeria/pelado4.webp', alt: 'Corte Moderno Junior', category: 'junior' },
+    { path: '/galeria/pelado5.png', alt: 'Corte Moderno Mid-Fade', category: 'caballero' },
+    { path: '/galeria/pelado6.png', alt: 'Arreglo de Barba Texturizado', category: 'barba' }
   ];
 
   useLayoutEffect(() => {
