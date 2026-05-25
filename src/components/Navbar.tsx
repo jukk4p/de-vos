@@ -20,9 +20,37 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
   // Cerrar menú al cambiar de ruta
   useEffect(() => setIsOpen(false), [location]);
 
+  // Navbar simplificada en la ruta de conversión /reservar
+  const isReservePage = location.pathname === '/reservar';
+  if (isReservePage) {
+    return (
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-surface-low/95 border-b border-white/5 py-4">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center relative z-50">
+          <Link to="/" className="flex flex-col leading-none text-left group">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 flex items-center justify-center border border-accent/40 group-hover:bg-accent transition-smooth">
+                <Scissors className="w-4 h-4 text-accent group-hover:text-background transition-smooth" />
+              </div>
+              <span className="font-heading text-2xl font-black tracking-industrial uppercase text-white">De-Vos</span>
+            </div>
+            <span className="text-[9px] text-accent font-black tracking-[0.3em] uppercase mt-2 pl-11 opacity-60">Barbería · Coria del Río</span>
+          </Link>
+          <a 
+            href="tel:+34606242706" 
+            className="text-accent text-[11px] font-black uppercase tracking-industrial hover:text-white transition-smooth flex items-center gap-2"
+          >
+            Llamar: 606 24 27 06
+          </a>
+        </div>
+      </nav>
+    );
+  }
+
   const navLinks = [
     { name: 'Inicio', path: '/' },
     { name: 'Servicios', path: '/servicios' },
+    { name: 'Galería', path: '/galeria' },
+    { name: 'Sobre Nosotros', path: '/nosotros' },
     { name: 'Contacto', path: '/contacto' },
   ];
 
@@ -32,7 +60,7 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
         <Link to="/" className="flex flex-col leading-none text-left group">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 flex items-center justify-center border border-accent/40 group-hover:bg-accent transition-smooth">
-              <Scissors className={`w-4 h-4 text-accent group-hover:text-background transition-smooth`} aria-hidden="true" />
+              <Scissors className="w-4 h-4 text-accent group-hover:text-background transition-smooth" aria-hidden="true" />
             </div>
             <span className="font-heading text-2xl font-black tracking-industrial uppercase text-white">De-Vos</span>
           </div>
@@ -52,23 +80,30 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
               </Link>
             ))}
           </div>
-          <button 
-            onClick={openWhatsApp}
+          <Link 
+            to="/reservar"
             className="bg-accent text-background font-black px-8 py-3 rounded-none hover:bg-white transition-smooth text-[11px] uppercase tracking-industrial shadow-xl active:scale-95 accent-glow"
-            aria-label="Reservar cita por WhatsApp"
           >
-            Reservar
-          </button>
+            RESERVAR →
+          </Link>
         </div>
 
-        {/* Mobile Toggle */}
-        <button 
-          className="md:hidden text-white p-2"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile Toggle & RESERVAR button always visible */}
+        <div className="flex md:hidden items-center gap-4">
+          <Link 
+            to="/reservar"
+            className="bg-accent text-background font-black px-4 py-2.5 rounded-none text-[10px] uppercase tracking-industrial shadow-md active:scale-95"
+          >
+            RESERVAR
+          </Link>
+          <button 
+            className="text-white p-2"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -98,12 +133,12 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
               </button>
             </div>
 
-            <button 
-              onClick={openWhatsApp}
-              className="w-full bg-accent text-background py-6 rounded-none font-black text-xs uppercase tracking-industrial accent-glow active:scale-95 transition-transform"
+            <Link 
+              to="/reservar"
+              className="w-full bg-accent text-background py-6 rounded-none font-black text-xs uppercase tracking-industrial accent-glow active:scale-95 transition-transform inline-block text-center"
             >
               Reservar Cita Ahora
-            </button>
+            </Link>
           </div>
         </div>
       </div>

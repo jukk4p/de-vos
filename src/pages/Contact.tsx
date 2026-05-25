@@ -143,7 +143,7 @@ const ContactPage = () => {
               </div>
               <h3 className="headline-lg text-2xl text-white uppercase tracking-wider">¡Solicitud Recibida!</h3>
               <p className="text-primary/50 text-sm max-w-sm mx-auto font-medium">
-                Nos pondremos en contacto con vos a la brevedad al teléfono <span className="text-white font-bold">{formData.telefono}</span> para confirmar tu turno.
+                Nos pondremos en contacto contigo a la brevedad en el teléfono <span className="text-white font-bold">{formData.telefono}</span> para confirmar tu turno.
               </p>
               <button 
                 onClick={() => setSubmitted(false)}
@@ -249,7 +249,7 @@ const ContactPage = () => {
           )}
 
           <div className="mt-8 pt-8 border-t border-white/5 text-center">
-            <span className="text-[10px] text-primary/30 uppercase tracking-industrial font-bold block mb-4">¿Preferís agendar al instante?</span>
+            <span className="text-[10px] text-primary/30 uppercase tracking-industrial font-bold block mb-4">¿Prefieres agendar al instante?</span>
             <button 
               onClick={openWhatsApp}
               className="w-full bg-white/5 border border-white/10 text-white font-extrabold text-xs uppercase tracking-industrial py-5 hover:bg-white hover:text-background transition-smooth flex items-center justify-center gap-3"

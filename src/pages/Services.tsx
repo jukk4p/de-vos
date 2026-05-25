@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
-import { Scissors, Phone, Award, Star } from 'lucide-react';
+import { Scissors, Award, Star } from 'lucide-react';
 
 const ServicesPage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -48,10 +49,6 @@ const ServicesPage = () => {
       ]
     }
   ];
-
-  const openWhatsApp = () => {
-    window.open('https://wa.me/34606242706?text=Hola,%20me%20gustar%C3%ADa%20reservar%20una%20cita%20en%20De-Vos', '_blank');
-  };
 
   return (
     <div ref={containerRef} className="pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen bg-background">
@@ -133,15 +130,14 @@ const ServicesPage = () => {
 
       {/* Dynamic CTA */}
       <div className="mt-32 text-center reveal-up">
-        <button 
-          onClick={openWhatsApp}
-          className="group relative inline-flex items-center gap-8 bg-accent text-background font-black text-xl px-20 py-8 rounded-none hover:bg-white transition-smooth shadow-2xl accent-glow"
-          aria-label="Reservar cita por WhatsApp"
+        <Link 
+          to="/reservar"
+          className="group relative inline-flex items-center gap-8 bg-accent text-background font-black text-xl px-20 py-8 rounded-none hover:bg-white transition-smooth shadow-2xl accent-glow uppercase tracking-industrial"
+          aria-label="Reservar cita en línea"
         >
           <Scissors className="w-6 h-6" />
-          <span className="uppercase tracking-industrial">Reservar Cita</span>
-          <Phone className="w-6 h-6 fill-current" />
-        </button>
+          Reservar Cita →
+        </Link>
       </div>
     </div>
   );
