@@ -1,0 +1,41 @@
+---
+import '../index.css';
+import '../App.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import WhatsAppFAB from '../components/WhatsAppFAB';
+import CookieBanner from '../components/cookies/CookieBanner';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Barbería De-Vos | Peques & Caballeros', description = 'Tu barbería de confianza en Coria del Río. Elevando el estándar de la barbería tradicional.' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <main class="relative min-h-screen bg-background text-white selection:bg-accent selection:text-background overflow-hidden">
+      <div class="fixed inset-0 bg-noise z-[1] pointer-events-none opacity-[0.03]" />
+      <div class="relative z-10 flex flex-col min-h-screen">
+        <Navbar client:load />
+        <slot />
+        <Footer />
+      </div>
+      <WhatsAppFAB client:load />
+      <CookieBanner client:idle />
+    </main>
+  </body>
+</html>

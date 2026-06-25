@@ -11,6 +11,9 @@ const DEFAULT_PREFERENCES: CookiePreferences = {
 };
 
 const getInitialConsent = (): CookieConsent => {
+  if (typeof localStorage === 'undefined') {
+    return { status: 'pending', preferences: DEFAULT_PREFERENCES, timestamp: Date.now(), version: CONSENT_VERSION };
+  }
   try {
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (stored) {

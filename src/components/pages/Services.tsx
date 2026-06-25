@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { Scissors, Award, Star } from 'lucide-react';
 
@@ -52,7 +51,6 @@ const ServicesPage = () => {
 
   return (
     <div ref={containerRef} className="pt-40 pb-32 px-6 max-w-7xl mx-auto min-h-screen bg-background">
-      {/* Header Editorial */}
       <div className="text-center mb-32">
         <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-2.5 rounded-full text-[11px] font-bold tracking-industrial text-accent uppercase mb-10">
           <Star className="w-3.5 h-3.5 text-accent fill-accent" />
@@ -66,14 +64,12 @@ const ServicesPage = () => {
         </p>
       </div>
 
-      {/* Services List (Industrial Layout) */}
       <div className="space-y-40">
         {services.map((group, idx) => (
           <div key={idx} className="service-group">
-            {/* === NUEVO: Cabecera con imagen y overlay para la categoría === */}
             <div className="relative h-[200px] w-full overflow-hidden border border-white/5 mb-12 group">
               <img 
-                src={idx === 0 ? "/galeria/banner_corte.png" : "/galeria/banner_junior.png"} 
+                src={idx === 0 ? "/galeria/banner_corte.webp" : "/galeria/banner_junior.webp"} 
                 alt={group.category}
                 className="w-full h-full object-cover opacity-50 transition-transform duration-700 group-hover:scale-105"
               />
@@ -92,9 +88,9 @@ const ServicesPage = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-32 gap-y-16">
               {group.items.map((srv, i) => (
-                <div key={i} className="service-item group">
+                <div key={i} className="service-item group focus-within:ring-1 focus-within:ring-accent p-2 -mx-2 transition-colors duration-300">
                   <div className="flex justify-between items-baseline mb-4">
-                    <h3 className="text-xl font-extrabold text-white uppercase tracking-wider group-hover:text-accent transition-smooth">
+                    <h3 className="text-xl font-extrabold text-white uppercase tracking-wider group-hover:text-accent group-hover:translate-x-1 transition-smooth">
                       {srv.title}
                     </h3>
                     <div className="flex-1 mx-6 border-b border-white/10 border-dashed group-hover:border-accent/40 transition-smooth" />
@@ -102,7 +98,7 @@ const ServicesPage = () => {
                       {srv.price}
                     </span>
                   </div>
-                  <p className="text-primary/30 text-[11px] font-bold uppercase tracking-industrial leading-relaxed">
+                  <p className="text-primary/30 text-[11px] font-bold uppercase tracking-industrial leading-relaxed group-hover:translate-x-1 group-hover:text-primary/50 transition-smooth">
                     {srv.desc}
                   </p>
                 </div>
@@ -112,7 +108,6 @@ const ServicesPage = () => {
         ))}
       </div>
 
-      {/* Experience Note (Industrial Luxury Card) */}
       <div className="mt-40 relative reveal-up">
         <div className="absolute inset-0 bg-accent/5 -rotate-1" />
         <div className="relative bg-surface-low p-12 md:p-24 border border-white/5 flex flex-col lg:flex-row items-center gap-16">
@@ -120,24 +115,23 @@ const ServicesPage = () => {
               <Award className="w-10 h-10 text-background" />
            </div>
            <div className="text-left">
-              <h4 className="headline-lg text-3xl text-white uppercase mb-6 tracking-wide">Nuestro Compromiso</h4>
-              <p className="text-primary/50 leading-relaxed font-medium text-lg max-w-3xl">
-                En De-Vos no nos andamos con rodeos: buscamos la perfección en cada detalle. Combinamos técnica artesanal y las mejores herramientas para que tu estilo sea impecable y duradero. No es solo un corte, es el cuidado que te mereces.
-              </p>
+             <h4 className="headline-lg text-3xl text-white uppercase mb-6 tracking-wide">Nuestro Compromiso</h4>
+             <p className="text-primary/50 leading-relaxed font-medium text-lg max-w-3xl">
+               En De-Vos no nos andamos con rodeos: buscamos la perfección en cada detalle. Combinamos técnica artesanal y las mejores herramientas para que tu estilo sea impecable y duradero. No es solo un corte, es el cuidado que te mereces.
+             </p>
            </div>
         </div>
       </div>
 
-      {/* Dynamic CTA */}
-      <div className="mt-32 text-center reveal-up">
-        <Link 
-          to="/reservar"
-          className="group relative inline-flex items-center gap-8 bg-accent text-background font-black text-xl px-20 py-8 rounded-none hover:bg-white transition-smooth shadow-2xl accent-glow uppercase tracking-industrial"
+      <div className="mt-24 text-center reveal-up">
+        <a 
+          href="/reservar"
+          className="group relative inline-flex items-center gap-4 bg-accent text-background font-black text-xs px-8 py-3.5 rounded-none hover:bg-white transition-smooth shadow-xl accent-glow uppercase tracking-industrial"
           aria-label="Reservar cita en línea"
         >
-          <Scissors className="w-6 h-6" />
+          <Scissors className="w-4 h-4" />
           Reservar Cita →
-        </Link>
+        </a>
       </div>
     </div>
   );

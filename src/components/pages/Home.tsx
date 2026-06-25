@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Phone, MapPin, Clock, Star, Calendar, Scissors, UserCheck, ChevronRight, Award, ShieldCheck, Search } from 'lucide-react';
@@ -11,7 +10,6 @@ const HomePage = () => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      // Intro Animation
       gsap.from(".hero-element", {
         y: 60,
         opacity: 0,
@@ -21,7 +19,6 @@ const HomePage = () => {
         delay: 0.2
       });
 
-      // Parallax Hero
       if (heroImageRef.current) {
         gsap.to(heroImageRef.current, {
           scrollTrigger: {
@@ -36,7 +33,6 @@ const HomePage = () => {
         });
       }
 
-      // Scroll Animations
       gsap.utils.toArray('.reveal-up').forEach((elem: any) => {
         gsap.from(elem, {
           scrollTrigger: {
@@ -86,12 +82,11 @@ const HomePage = () => {
           />
         </div>
 
-        {/* Signature Badge */}
         <div className="hero-element relative z-20 mb-10">
-          <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-2.5 rounded-full backdrop-blur-xl">
+          <a href="https://search.google.com/local/writereview?ludocid=16653154385558997905" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-2.5 rounded-full backdrop-blur-xl hover:bg-white/10 transition-smooth">
             <Star className="w-3.5 h-3.5 text-accent fill-accent" />
             <span className="text-[11px] font-bold tracking-industrial uppercase text-accent">Reputación 4.8 Estrellas</span>
-          </div>
+          </a>
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
@@ -104,29 +99,27 @@ const HomePage = () => {
             Elevando el estándar de la barbería tradicional en Coria del Río. <br className="hidden md:block" /> Tu barbería de confianza con el mejor trato personalizado.
           </p>
 
-          {/* === NUEVO: Botones Hero ajustados y alineados === */}
           <div className="hero-element flex flex-col sm:flex-row gap-4 justify-center items-center md:max-w-xl mx-auto">
-            <Link
-              to="/reservar"
-              className="group relative flex items-center justify-center gap-4 bg-accent text-background font-extrabold text-[12px] px-8 py-6 rounded-none hover:bg-white transition-smooth shadow-2xl accent-glow w-full max-w-[280px] whitespace-nowrap"
+            <a
+              href="/reservar"
+              className="group relative flex items-center justify-center gap-3 bg-accent text-background font-extrabold text-[11px] px-6 py-3 rounded-none hover:bg-white transition-smooth shadow-xl accent-glow w-full max-w-[240px] whitespace-nowrap"
               aria-label="Reservar cita ahora"
             >
-              <Calendar className="w-5 h-5 shrink-0" />
+              <Calendar className="w-4 h-4 shrink-0" />
               <span className="uppercase tracking-industrial whitespace-nowrap">Agendar Cita</span>
-              <ChevronRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-smooth" />
-            </Link>
-            <Link
-              to="/servicios"
-              className="group relative flex items-center justify-center gap-4 bg-transparent border border-white/20 text-white font-extrabold text-[12px] px-8 py-6 rounded-none hover:bg-white hover:text-background transition-smooth w-full max-w-[280px] uppercase tracking-industrial whitespace-nowrap"
+              <ChevronRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-smooth" />
+            </a>
+            <a
+              href="/servicios"
+              className="group relative flex items-center justify-center gap-3 bg-transparent border border-white/20 text-white font-extrabold text-[11px] px-6 py-3 rounded-none hover:bg-white hover:text-background transition-smooth w-full max-w-[240px] uppercase tracking-industrial whitespace-nowrap"
             >
-              <Scissors className="w-5 h-5 shrink-0" />
+              <Scissors className="w-4 h-4 shrink-0" />
               <span className="uppercase tracking-industrial whitespace-nowrap">Ver servicios</span>
-              <ChevronRight className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-smooth" />
-            </Link>
+              <ChevronRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-smooth" />
+            </a>
           </div>
         </div>
 
-        {/* Decorative element: Signature line */}
         <div className="hero-element absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-t from-accent to-transparent" />
       </section>
 
@@ -191,7 +184,6 @@ const HomePage = () => {
                 height="1000"
               />
             </div>
-            {/* Float Element */}
             <div className="absolute -bottom-10 -right-10 bg-accent p-10 hidden md:block">
               <ShieldCheck className="w-10 h-10 text-background" />
               <p className="text-[10px] font-black uppercase tracking-industrial text-background mt-4 text-left leading-tight">PASIÓN POR <br />EL DETALLE</p>
@@ -208,9 +200,9 @@ const HomePage = () => {
               <span className="text-accent text-xs font-bold uppercase tracking-industrial mb-4 block">Servicios</span>
               <h2 className="headline-lg text-5xl md:text-8xl text-white uppercase leading-none">Corte <br />& Ritual</h2>
             </div>
-            <Link to="/servicios" className="group relative inline-flex items-center gap-6 bg-white/5 border border-white/10 px-10 py-5 rounded-none text-[11px] font-extrabold uppercase tracking-industrial text-white hover:bg-accent hover:text-background transition-smooth shadow-lg">
-              Ver Todos los Servicios <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-smooth" />
-            </Link>
+            <a href="/servicios" className="group relative inline-flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-3 rounded-none text-[11px] font-extrabold uppercase tracking-industrial text-white hover:bg-accent hover:text-background transition-smooth shadow-lg">
+              Ver Todos los Servicios <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-smooth" />
+            </a>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -234,28 +226,28 @@ const HomePage = () => {
                 icon: Scissors
               }
             ].map((srv, i) => (
-              <div key={i} className="stagger-card bg-surface-low p-12 group transition-smooth relative flex flex-col border border-white/5 hover:border-accent/40 min-h-[350px]">
-                <div className="absolute top-0 right-0 p-10 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
-                  <srv.icon className="w-40 h-40 text-white" />
+              <div key={i} className="stagger-card bg-surface-low p-8 group transition-smooth relative flex flex-col border border-white/5 hover:border-accent/40 hover:-translate-y-1.5 hover:bg-surface-container hover:shadow-[0_20px_50px_rgba(209,161,94,0.06)] min-h-[280px]">
+                <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
+                  <srv.icon className="w-32 h-32 text-white" />
                 </div>
 
                 <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex justify-between items-start mb-8">
-                    <h3 className="font-heading text-2xl font-black text-white uppercase tracking-wider group-hover:text-accent transition-smooth max-w-[150px] leading-tight">{srv.title}</h3>
+                  <div className="flex justify-between items-start mb-6">
+                    <h3 className="font-heading text-lg font-black text-white uppercase tracking-wider group-hover:text-accent transition-smooth max-w-[140px] leading-tight">{srv.title}</h3>
                     <div className="flex flex-col items-end">
-                      <span className="text-accent font-heading text-2xl font-black">{srv.price}</span>
-                      <span className="text-[9px] text-white/20 uppercase tracking-widest font-bold">Base</span>
+                      <span className="text-accent font-heading text-xl font-black">{srv.price}</span>
+                      <span className="text-[8px] text-white/20 uppercase tracking-widest font-bold">Base</span>
                     </div>
                   </div>
 
-                  <p className="text-white/80 text-sm leading-relaxed mb-auto font-medium max-w-[200px]">
+                  <p className="text-white/80 text-xs leading-relaxed mb-auto font-medium max-w-[200px]">
                     {srv.desc}
                   </p>
 
-                  <div className="pt-8 border-t border-white/5">
-                    <Link to="/servicios" className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-industrial text-accent hover:text-white transition-smooth">
-                      Ver detalles <ChevronRight className="w-4 h-4" />
-                    </Link>
+                  <div className="pt-6 border-t border-white/5 mt-6">
+                    <a href="/servicios" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-industrial text-accent hover:text-white transition-smooth focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent">
+                      Ver detalles <ChevronRight className="w-3.5 h-3.5" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -264,19 +256,16 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonios: Voces Reales */}
-      <section className="py-40 px-6 bg-surface-lowest overflow-hidden relative">
-        {/* Elemento decorativo: Comilla gigante de fondo */}
-        <div className="absolute top-20 right-0 text-[300px] font-black text-white/[0.02] leading-none select-none pointer-events-none translate-x-1/4">"</div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-24 md:mb-32 gap-10 reveal-up text-center md:text-left">
+      {/* Testimonios */}
+      <section className="py-24 px-6 bg-surface-lowest overflow-hidden relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-6 reveal-up text-center md:text-left">
             <div className="w-full md:w-auto">
-              <span className="text-accent text-xs font-bold uppercase tracking-industrial mb-6 block">Reseñas de Clientes</span>
+              <span className="text-accent text-xs font-bold uppercase tracking-industrial mb-4 block">Reseñas de Clientes</span>
               <h2 className="display-lg text-white uppercase text-center md:text-left">Experiencias <br /><span className="text-accent italic">De-Vos</span></h2>
             </div>
-            <div className="flex items-center gap-4 bg-white/5 px-6 py-3 border border-white/10 mb-2 whitespace-nowrap">
-              <div className="flex gap-1">
+            <div className="flex items-center gap-3 bg-white/5 px-5 py-2.5 border border-white/10 whitespace-nowrap">
+              <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3 h-3 text-[#FBBC04] fill-[#FBBC04]" />
                 ))}
@@ -285,78 +274,95 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
-                name: "Juan M.",
-                text: "El mejor degradado de Coria. La atención al detalle de los chavales es de otro nivel. Un sitio de 10.",
+                name: "Carmen C.",
+                text: "Para mis hijos el mejor o mejores peluqueros ellos sin duda. Unos artistas y buenas personas, bien trato.",
                 rating: 5,
-                sub: "Cliente Frecuente",
+                sub: "Madre de familia",
+                date: "Hace 3 días"
+              },
+              {
+                name: "Ángel T.",
+                text: "Fui por mediación de un compañero de trabajo, me hizo el servicio sin coger cita, buen profesional y el precio espectacular. Me dejó la barba estupenda, ya tengo barbero de confianza.",
+                rating: 5,
+                sub: "Cliente recomendado",
                 date: "Hace 1 semana"
               },
               {
-                name: "Carlos R.",
-                text: "Llevo a mis hijos desde hace años y no quieren ir a otro sitio. Paciencia infinita y resultados impecables.",
+                name: "Ramón J. P.",
+                text: "Están especializados en niños, pero lo hacen muy bien tanto para niños como para adultos. El trato es muy bueno y la relación calidad-precio es estupenda.",
                 rating: 5,
-                sub: "Padre de familia",
+                sub: "Cliente habitual",
                 date: "Hace 2 semanas"
+              },
+              {
+                name: "Israel P. A.",
+                text: "Mi pelu de confianza, los chavales trabajan muy bien y llevan baratito. Siempre salgo contento.",
+                rating: 5,
+                sub: "Cliente frecuente",
+                date: "Hace 3 semanas"
               }
             ].map((test, i) => (
-              <div key={i} className="stagger-card group relative p-10 md:p-16 bg-surface-low border border-white/5 hover:border-accent/20 transition-smooth">
-                <div className="absolute top-0 right-0 p-8 opacity-[0.05] group-hover:opacity-[0.15] transition-opacity">
-                  <Scissors className="w-20 h-20 text-white" />
-                </div>
-
-                <div className="flex items-center gap-3 mb-10">
-                  <span className="text-xs font-bold text-white/50 uppercase tracking-widest mr-2">Google</span>
-                  <div className="flex gap-1">
+              <div key={i} className="stagger-card group relative p-5 bg-surface-low border border-white/5 hover:border-accent/20 hover:-translate-y-1.5 hover:bg-surface-container hover:shadow-[0_20px_50px_rgba(209,161,94,0.06)] transition-smooth flex flex-col">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-[9px] font-bold text-white/50 uppercase tracking-widest">Google</span>
+                  <div className="flex gap-0.5">
                     {[...Array(test.rating)].map((_, idx) => (
-                      <Star key={idx} className="w-4 h-4 text-[#FBBC04] fill-[#FBBC04]" />
+                      <Star key={idx} className="w-3 h-3 text-[#FBBC04] fill-[#FBBC04]" />
                     ))}
                   </div>
                 </div>
 
-                <blockquote className="text-white text-2xl md:text-3xl font-medium leading-tight mb-12 tracking-tight not-italic">
+                <blockquote className="text-white text-sm font-medium leading-relaxed mb-4 tracking-tight not-italic flex-1">
                   "{test.text}"
                 </blockquote>
 
-                <div className="flex items-center gap-6">
-                  <div className="w-10 h-10 rounded-none border border-white/10 flex items-center justify-center bg-white/5 text-accent font-black text-xs">
+                <div className="flex items-center gap-3 pt-3 border-t border-white/5">
+                  <div className="w-8 h-8 flex items-center justify-center bg-white/5 text-accent font-black text-[9px] uppercase">
                     {test.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="text-white text-xs font-black uppercase tracking-industrial mb-1">{test.name}</p>
-                    <p className="text-primary/40 text-[9px] font-bold uppercase tracking-[0.2em]">{test.sub}</p>
-                    <p className="text-white/30 text-[9px] font-bold uppercase tracking-widest mt-1">{test.date}</p>
+                    <p className="text-white text-[9px] font-black uppercase tracking-industrial">{test.name}</p>
+                    <p className="text-primary/40 text-[7px] font-bold uppercase tracking-[0.2em]">{test.sub}</p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          <div className="mt-10 text-center">
+            <a
+              href="https://search.google.com/local/writereview?ludocid=16653154385558997905"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 text-[10px] font-black uppercase tracking-industrial text-white hover:bg-accent hover:text-background transition-smooth"
+            >
+              Dejar tu opinión en Google
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* === NUEVO: Sección Galería de Trabajos === */}
-      <section className="py-32 bg-background border-t border-white/5 px-6 reveal-up">
+      {/* Galería de Trabajos */}
+      <section className="py-16 bg-background border-t border-white/5 px-6 reveal-up">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             <span className="text-accent text-xs font-bold uppercase tracking-industrial mb-4 block">Cada corte, una obra</span>
-            <h2 className="headline-lg text-4xl md:text-6xl text-white uppercase">Nuestro Trabajo</h2>
-            <div className="w-20 h-px bg-accent mx-auto mt-6" />
+            <h2 className="headline-lg text-3xl md:text-5xl text-white uppercase">Nuestro Trabajo</h2>
+            <div className="w-16 h-px bg-accent mx-auto mt-4" />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[
               { path: '/galeria/pelado1.webp', alt: 'Corte Degradado de Caballero' },
               { path: '/galeria/pelado2.webp', alt: 'Perfilado de Barba y Estilo' },
-              { path: '/galeria/pelado3.webp', alt: 'Corte Clásico Masculino' },
-              { path: '/galeria/pelado4.webp', alt: 'Corte Estilo Junior' },
-              { path: '/galeria/pelado5.png', alt: 'Corte Moderno Mid-Fade' },
-              { path: '/galeria/pelado6.png', alt: 'Arreglo de Barba Texturizado' }
+              { path: '/galeria/pelado3.webp', alt: 'Corte Clásico Masculino' }
             ].map((img, index) => (
               <div
                 key={index}
-                className="group relative aspect-square overflow-hidden border border-white/5 bg-surface-low shadow-lg"
+                className="group relative aspect-[3/2] overflow-hidden border border-white/5 bg-surface-low shadow-lg"
               >
                 <img
                   src={img.path}
@@ -364,7 +370,6 @@ const HomePage = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
-                {/* Hover overlay with search/magnifying glass icon */}
                 <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
                   <div className="w-12 h-12 border border-accent flex items-center justify-center text-accent scale-75 group-hover:scale-100 transition-transform duration-300">
                     <Search className="w-5 h-5" />
@@ -374,14 +379,41 @@ const HomePage = () => {
             ))}
           </div>
 
-          <div className="mt-16 text-center">
-            <Link
-              to="/galeria"
-              className="inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-industrial text-accent hover:text-white transition-smooth"
+          <div className="mt-12 text-center">
+            <a
+              href="/galeria"
+              className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-industrial text-accent hover:text-white transition-smooth"
             >
-              Ver galería completa <ChevronRight className="w-4 h-4" />
-            </Link>
+              Ver galería completa <ChevronRight className="w-3 h-3" />
+            </a>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Final */}
+      <section className="relative py-24 px-6 bg-surface-lowest overflow-hidden border-t border-white/5">
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.03] via-transparent to-accent/[0.02]" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="display-lg text-white uppercase mb-6">
+            ¿Sigues buscando <br />
+            <span className="text-white/35">tu barbero de confianza?</span>
+          </h2>
+          <p className="text-primary/50 text-sm md:text-base font-medium max-w-lg mx-auto mb-10 leading-relaxed">
+            En De-Vos no improvisamos. Te escuchamos, te asesoramos y trabajamos hasta que el resultado sea exactamente lo que buscabas. Porque tu imagen no es un juego.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href="/reservar"
+              className="group relative inline-flex items-center gap-3 bg-accent text-background font-extrabold text-[11px] px-6 py-3.5 rounded-none hover:bg-white transition-smooth shadow-xl accent-glow uppercase tracking-industrial"
+            >
+              <Calendar className="w-4 h-4" />
+              Reservar Cita
+              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-smooth" />
+            </a>
+          </div>
+          <p className="text-primary/20 text-[9px] font-bold uppercase tracking-[0.3em] mt-6">
+            Te confirmamos en menos de 2 horas
+          </p>
         </div>
       </section>
     </>

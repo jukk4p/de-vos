@@ -1,5 +1,4 @@
 import React, { Suspense, useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useCookieConsent } from './useCookieConsent';
@@ -88,12 +87,12 @@ const CookieBanner = () => {
           </h4>
           <p className="text-primary/70 text-xs md:text-sm leading-relaxed font-medium">
             Utilizamos cookies propias para el correcto funcionamiento de la web. Puedes aceptarlas, rechazarlas o configurarlas según tus preferencias.{' '}
-            <Link
-              to="/privacidad"
+            <a
+              href="/privacidad"
               className="text-[#D4A017] hover:text-white underline transition-smooth whitespace-nowrap"
             >
               Más información
-            </Link>
+            </a>
           </p>
         </div>
 

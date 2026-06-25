@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { Scissors, Menu, X } from 'lucide-react';
 
-interface NavbarProps {
-  openWhatsApp: () => void;
-}
-
-const Navbar = ({ openWhatsApp }: NavbarProps) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const [pathname, setPathname] = useState('/');
+
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -17,10 +16,8 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Cerrar menú al cambiar de ruta
-  useEffect(() => setIsOpen(false), [location]);
+  useEffect(() => setIsOpen(false), [pathname]);
 
-  // Bloquear scroll vertical del body cuando el menú móvil está abierto
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -32,13 +29,16 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
     };
   }, [isOpen]);
 
-  // Navbar simplificada en la ruta de conversión /reservar
-  const isReservePage = location.pathname === '/reservar';
+  const openWhatsApp = () => {
+    window.open('https://wa.me/34606242706?text=Hola,%20me%20gustar%C3%ADa%20reservar%20una%20cita%20en%20De-Vos', '_blank');
+  };
+
+  const isReservePage = pathname === '/reservar';
   if (isReservePage) {
     return (
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-surface-low/95 border-b border-white/5 py-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-surface-low/95 py-4">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center relative z-50">
-          <Link to="/" className="flex flex-col leading-none text-left group">
+          <a href="/" className="flex flex-col leading-none text-left group">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 flex items-center justify-center border border-accent/40 group-hover:bg-accent transition-smooth">
                 <Scissors className="w-4 h-4 text-accent group-hover:text-background transition-smooth" />
@@ -46,7 +46,7 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
               <span className="font-heading text-2xl font-black tracking-industrial uppercase text-white">De-Vos</span>
             </div>
             <span className="text-[9px] text-accent font-black tracking-[0.3em] uppercase mt-2 pl-11 opacity-60">Barbería · Coria del Río</span>
-          </Link>
+          </a>
           <a 
             href="tel:+34606242706" 
             className="text-accent text-[11px] font-black uppercase tracking-industrial hover:text-white transition-smooth flex items-center gap-2"
@@ -67,9 +67,9 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${scrolled ? 'bg-surface-low/90 backdrop-blur-xl border-b border-white/5 py-4' : 'bg-transparent py-8'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${scrolled ? 'bg-surface-low/90 backdrop-blur-xl py-4' : 'bg-transparent py-8'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center relative z-50">
-        <Link to="/" className="flex flex-col leading-none text-left group">
+        <a href="/" className="flex flex-col leading-none text-left group">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 flex items-center justify-center border border-accent/40 group-hover:bg-accent transition-smooth">
               <Scissors className="w-4 h-4 text-accent group-hover:text-background transition-smooth" aria-hidden="true" />
@@ -77,37 +77,37 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
             <span className="font-heading text-2xl font-black tracking-industrial uppercase text-white">De-Vos</span>
           </div>
           <span className="text-[9px] text-accent font-black tracking-[0.3em] uppercase mt-2 pl-11 opacity-60">Barbería · Coria del Río</span>
-        </Link>
+        </a>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-12">
           <div className="flex items-center gap-10 text-[11px] font-extrabold uppercase tracking-industrial">
             {navLinks.map((link) => (
-              <Link 
+              <a 
                 key={link.path}
-                to={link.path} 
-                className={`transition-smooth hover:text-accent relative py-2 ${location.pathname === link.path ? 'text-accent after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent' : 'text-primary/70'}`}
+                href={link.path} 
+                className={`transition-smooth hover:text-accent relative py-2 focus-visible:ring-1 focus-visible:ring-accent focus-visible:outline-none ${pathname === link.path ? 'text-accent after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent' : 'text-primary/70 after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left'}`}
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </div>
-          <Link 
-            to="/reservar"
-            className="bg-accent text-background font-black px-8 py-3 rounded-none hover:bg-white transition-smooth text-[11px] uppercase tracking-industrial shadow-xl active:scale-95 accent-glow"
+          <a 
+            href="/reservar"
+            className="bg-accent text-background font-black px-5 py-2.5 rounded-none hover:bg-white transition-smooth text-[10px] uppercase tracking-industrial shadow-lg active:scale-95 accent-glow"
           >
             RESERVAR →
-          </Link>
+          </a>
         </div>
 
-        {/* Mobile Toggle & RESERVAR button always visible */}
+        {/* Mobile Toggle & RESERVAR */}
         <div className="flex md:hidden items-center gap-4">
-          <Link 
-            to="/reservar"
+          <a 
+            href="/reservar"
             className="bg-accent text-background font-black px-4 py-2.5 rounded-none text-[10px] uppercase tracking-industrial shadow-md active:scale-95"
           >
             RESERVAR
-          </Link>
+          </a>
           <button 
             className="text-white p-2"
             onClick={() => setIsOpen(!isOpen)}
@@ -121,17 +121,16 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 z-40 bg-[#141313] md:hidden transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <div className="flex flex-col h-full pt-32 pb-12 px-8">
-          {/* Menu Links */}
           <div className="flex flex-col gap-8 text-3xl font-heading font-black tracking-industrial uppercase">
             {navLinks.map((link, i) => (
-              <Link 
+              <a 
                 key={link.path}
-                to={link.path} 
-                className={`transition-smooth ${location.pathname === link.path ? 'text-accent' : 'text-white/40 hover:text-white'}`}
+                href={link.path} 
+                className={`transition-smooth ${pathname === link.path ? 'text-accent' : 'text-white/40 hover:text-white'}`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -145,12 +144,12 @@ const Navbar = ({ openWhatsApp }: NavbarProps) => {
               </button>
             </div>
 
-            <Link 
-              to="/reservar"
-              className="w-full bg-accent text-background py-6 rounded-none font-black text-xs uppercase tracking-industrial accent-glow active:scale-95 transition-transform inline-block text-center"
+            <a 
+              href="/reservar"
+              className="w-full bg-accent text-background py-4 rounded-none font-black text-xs uppercase tracking-industrial accent-glow active:scale-95 transition-transform inline-block text-center"
             >
               Reservar Cita Ahora
-            </Link>
+            </a>
           </div>
         </div>
       </div>

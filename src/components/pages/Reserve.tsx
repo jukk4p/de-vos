@@ -126,10 +126,12 @@ ${formData.mensaje ? `- Notas: ${formData.mensaje}` : ''}`;
                       id="nombre"
                       name="nombre"
                       required
+                      autoComplete="name"
+                      spellCheck="false"
                       value={formData.nombre}
                       onChange={handleInputChange}
-                      className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth placeholder-white/20"
-                      placeholder="Ej. Juan Pérez"
+                      className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth placeholder-white/20 focus-visible:ring-1 focus-visible:ring-accent"
+                      placeholder="Ej. Juan Pérez…"
                     />
                   </div>
 
@@ -140,11 +142,13 @@ ${formData.mensaje ? `- Notas: ${formData.mensaje}` : ''}`;
                       id="telefono"
                       name="telefono"
                       required
+                      autoComplete="tel"
+                      spellCheck="false"
                       pattern="[0-9]{9,15}"
                       value={formData.telefono}
                       onChange={handleInputChange}
-                      className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth placeholder-white/20"
-                      placeholder="Ej. 606242706"
+                      className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth placeholder-white/20 focus-visible:ring-1 focus-visible:ring-accent"
+                      placeholder="Ej. 606242706…"
                     />
                   </div>
                 </div>
@@ -155,9 +159,10 @@ ${formData.mensaje ? `- Notas: ${formData.mensaje}` : ''}`;
                     id="servicio"
                     name="servicio"
                     required
+                    autoComplete="off"
                     value={formData.servicio}
                     onChange={handleInputChange}
-                    className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth appearance-none cursor-pointer"
+                    className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth appearance-none cursor-pointer focus-visible:ring-1 focus-visible:ring-accent"
                   >
                     <option value="" disabled>Selecciona un servicio...</option>
                     <option value="corte-caballero">Corte Caballero (12€)</option>
@@ -180,9 +185,10 @@ ${formData.mensaje ? `- Notas: ${formData.mensaje}` : ''}`;
                       name="fecha"
                       required
                       min={today}
+                      autoComplete="off"
                       value={formData.fecha}
                       onChange={handleDateChange}
-                      className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth"
+                      className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth focus-visible:ring-1 focus-visible:ring-accent"
                     />
                   </div>
 
@@ -192,9 +198,10 @@ ${formData.mensaje ? `- Notas: ${formData.mensaje}` : ''}`;
                       id="hora"
                       name="hora"
                       required
+                      autoComplete="off"
                       value={formData.hora}
                       onChange={handleInputChange}
-                      className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth appearance-none cursor-pointer"
+                      className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth appearance-none cursor-pointer focus-visible:ring-1 focus-visible:ring-accent"
                     >
                       <option value="" disabled>Elige un horario...</option>
                       {timeSlots.map((slot) => (
@@ -213,8 +220,8 @@ ${formData.mensaje ? `- Notas: ${formData.mensaje}` : ''}`;
                     maxLength={300}
                     value={formData.mensaje}
                     onChange={handleInputChange}
-                    className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth placeholder-white/20 resize-none"
-                    placeholder="Detalla si quieres algún diseño especial, barbero preferido, etc."
+                    className="w-full bg-background border border-white/10 px-5 py-4 text-white text-sm focus:outline-none focus:border-accent transition-smooth placeholder-white/20 resize-none focus-visible:ring-1 focus-visible:ring-accent"
+                    placeholder="Detalla si quieres algún diseño especial, barbero preferido, etc…"
                   />
                   <div className="text-right text-[10px] text-primary/20 uppercase font-black tracking-widest mt-1">
                     Máx. 300 caracteres
@@ -224,7 +231,7 @@ ${formData.mensaje ? `- Notas: ${formData.mensaje}` : ''}`;
 
               <button 
                 type="submit"
-                className="w-full bg-accent text-background font-black text-xs uppercase tracking-industrial py-6 hover:bg-white transition-smooth shadow-2xl accent-glow flex items-center justify-center gap-3 cursor-pointer"
+                className="w-full bg-accent text-background font-black text-xs uppercase tracking-industrial py-3.5 hover:bg-white transition-smooth shadow-lg accent-glow flex items-center justify-center gap-2 cursor-pointer"
               >
                 Confirmar Reserva →
               </button>
@@ -274,7 +281,7 @@ ${formData.mensaje ? `- Notas: ${formData.mensaje}` : ''}`;
 
             <button 
               onClick={openWhatsAppDirect}
-              className="w-full bg-white/5 border border-white/10 text-white font-black text-xs uppercase tracking-industrial py-4 hover:bg-white hover:text-background transition-smooth"
+              className="w-full bg-white/5 border border-white/10 text-white font-black text-xs uppercase tracking-industrial py-3 hover:bg-white hover:text-background transition-smooth"
             >
               Reservar por WhatsApp
             </button>

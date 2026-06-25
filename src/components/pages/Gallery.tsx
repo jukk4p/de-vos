@@ -1,5 +1,4 @@
 import { useState, useLayoutEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { Search, Scissors, Star } from 'lucide-react';
 
@@ -12,8 +11,8 @@ const GalleryPage = () => {
     { path: '/galeria/pelado2.webp', alt: 'Perfilado de Barba de Precisión', category: 'barba' },
     { path: '/galeria/pelado3.webp', alt: 'Corte Clásico Masculino', category: 'caballero' },
     { path: '/galeria/pelado4.webp', alt: 'Corte Moderno Junior', category: 'junior' },
-    { path: '/galeria/pelado5.png', alt: 'Corte Moderno Mid-Fade', category: 'caballero' },
-    { path: '/galeria/pelado6.png', alt: 'Arreglo de Barba Texturizado', category: 'barba' }
+    { path: '/galeria/pelado5.webp', alt: 'Corte Moderno Mid-Fade', category: 'caballero' },
+    { path: '/galeria/pelado6.webp', alt: 'Arreglo de Barba Texturizado', category: 'barba' }
   ];
 
   useLayoutEffect(() => {
@@ -33,7 +32,6 @@ const GalleryPage = () => {
 
   return (
     <div ref={containerRef} className="pt-40 pb-24 px-6 max-w-7xl mx-auto min-h-screen bg-background">
-      {/* Hero / Header */}
       <header className="gallery-element text-center mb-20">
         <span className="text-accent text-xs font-bold uppercase tracking-industrial mb-6 block">Cada corte, una historia</span>
         <h1 className="display-lg text-white uppercase mb-8">
@@ -44,7 +42,6 @@ const GalleryPage = () => {
         </p>
       </header>
 
-      {/* === SECCIÓN: Filtros de Categoría === */}
       <div className="gallery-element flex flex-wrap justify-center gap-4 mb-16">
         {[
           { label: 'Todos', value: 'all' },
@@ -55,14 +52,13 @@ const GalleryPage = () => {
           <button
             key={btn.value}
             onClick={() => setFilter(btn.value as any)}
-            className={`px-8 py-3 rounded-none text-[11px] font-black uppercase tracking-industrial transition-smooth ${filter === btn.value ? 'bg-accent text-background font-black' : 'bg-surface-low text-white/60 border border-white/5 hover:border-accent hover:text-white'}`}
+            className={`px-5 py-2.5 rounded-none text-[10px] font-black uppercase tracking-industrial transition-smooth ${filter === btn.value ? 'bg-accent text-background font-black' : 'bg-surface-low text-white/60 border border-white/5 hover:border-accent hover:text-white'}`}
           >
             {btn.label}
           </button>
         ))}
       </div>
 
-      {/* Grid de fotos */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {filteredPhotos.map((photo, i) => (
           <div 
@@ -75,7 +71,6 @@ const GalleryPage = () => {
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />
-            {/* Hover overlay with search/magnifying glass icon */}
             <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
               <div className="w-12 h-12 border border-accent flex items-center justify-center text-accent scale-75 group-hover:scale-100 transition-transform duration-300">
                 <Search className="w-5 h-5" />
@@ -85,20 +80,19 @@ const GalleryPage = () => {
         ))}
       </div>
 
-      {/* CTA Final */}
       <div className="gallery-element mt-32 text-center reveal-up">
         <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-2.5 rounded-full text-[11px] font-bold tracking-industrial text-accent uppercase mb-8">
           <Star className="w-3.5 h-3.5 text-accent fill-accent" />
           <span>¿Quieres un corte así?</span>
         </div>
         <h2 className="headline-lg text-4xl text-white uppercase mb-8">Escribe tu propia historia</h2>
-        <Link 
-          to="/reservar"
-          className="group relative inline-flex items-center gap-6 bg-accent text-background font-black text-xs px-16 py-6 rounded-none hover:bg-white transition-smooth shadow-2xl uppercase tracking-industrial accent-glow"
+        <a 
+          href="/reservar"
+          className="group relative inline-flex items-center gap-3 bg-accent text-background font-black text-[11px] px-6 py-3 rounded-none hover:bg-white transition-smooth shadow-xl uppercase tracking-industrial accent-glow"
         >
-          <Scissors className="w-5 h-5" />
+          <Scissors className="w-4 h-4" />
           Reservar Cita →
-        </Link>
+        </a>
       </div>
     </div>
   );

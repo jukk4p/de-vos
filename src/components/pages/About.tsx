@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { Scissors, UserCheck, Shield, ChevronRight } from 'lucide-react';
 
@@ -21,7 +20,6 @@ const AboutPage = () => {
 
   return (
     <div ref={containerRef} className="pt-40 pb-24 px-6 max-w-7xl mx-auto min-h-screen bg-background">
-      {/* === SECCIÓN: Historia === */}
       <div className="about-element grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
         <div className="space-y-8 text-left">
           <span className="text-accent text-xs font-bold uppercase tracking-industrial mb-2 block">Nuestra Historia</span>
@@ -52,7 +50,6 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* === SECCIÓN: Valores (3 tarjetas) === */}
       <div className="about-element py-20 border-t border-b border-white/5 mb-32">
         <div className="text-center mb-16">
           <span className="text-accent text-[10px] font-black uppercase tracking-industrial block mb-2">Fundamentos</span>
@@ -88,7 +85,6 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* === SECCIÓN: El Equipo === */}
       <div className="about-element mb-32">
         <div className="text-center mb-16">
           <span className="text-accent text-[10px] font-black uppercase tracking-industrial block mb-2">Profesionales</span>
@@ -125,22 +121,21 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* CTA Final */}
       <div className="about-element text-center pt-12 border-t border-white/5">
         <h2 className="headline-lg text-3xl md:text-4xl text-white uppercase mb-8">Vive la Experiencia De-Vos</h2>
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <Link
-            to="/contacto"
-            className="group relative flex items-center justify-center gap-3 bg-transparent border border-white/20 text-white font-extrabold text-[12px] px-14 py-5 rounded-none hover:bg-white hover:text-background transition-smooth w-full sm:max-w-[240px] uppercase tracking-industrial"
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="/contacto"
+            className="group relative flex items-center justify-center gap-2 bg-transparent border border-white/20 text-white font-extrabold text-[11px] px-6 py-3 rounded-none hover:bg-white hover:text-background transition-smooth w-full sm:w-auto uppercase tracking-industrial"
           >
             Ven a Conocernos
-          </Link>
-          <Link
-            to="/reservar"
-            className="group relative flex items-center justify-center gap-3 bg-accent text-background font-extrabold text-[12px] px-14 py-5 rounded-none hover:bg-white transition-smooth shadow-xl w-full sm:max-w-[240px] uppercase tracking-industrial accent-glow"
+          </a>
+          <a
+            href="/reservar"
+            className="group relative flex items-center justify-center gap-2 bg-accent text-background font-extrabold text-[11px] px-6 py-3 rounded-none hover:bg-white transition-smooth shadow-lg w-full sm:w-auto uppercase tracking-industrial accent-glow"
           >
-            Reservar Cita <ChevronRight className="w-4 h-4" />
-          </Link>
+            Reservar Cita <ChevronRight className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
     </div>

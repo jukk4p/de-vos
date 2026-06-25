@@ -1,10 +1,11 @@
 # 💈 Barbería De-Vos — Precisión Industrial
 
-[![Vite](https://img.shields.io/badge/Vite-8.0.10-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vite.dev/)
+[![Astro](https://img.shields.io/badge/Astro-7.0.2-BC52EE?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
 [![React](https://img.shields.io/badge/React-19.2.5-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.19-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![GSAP](https://img.shields.io/badge/GSAP-3.15.0-88CE02?style=for-the-badge&logo=greensock&logoColor=white)](https://greensock.com/gsap/)
+[![Docker](https://img.shields.io/badge/Docker-ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docker.com/)
 
 Sitio web oficial de la **Barbería De-Vos** (Coria del Río, Sevilla), un espacio de estética masculina y línea junior diseñado bajo un concepto estético industrial-premium. La plataforma destaca por sus micro-animaciones fluidas, un diseño visual imponente y una experiencia de usuario optimizada para agendamiento de turnos directo.
 
@@ -16,17 +17,18 @@ Sitio web oficial de la **Barbería De-Vos** (Coria del Río, Sevilla), un espac
 *   **Animaciones Ultra-fluidas:** Implementación de GSAP (GreenSock) con `ScrollTrigger` y animaciones de parallax para una experiencia interactiva sofisticada.
 *   **Optimizado para Dispositivos Móviles:** Interfaz totalmente responsiva con menú lateral adaptado y botones flotantes táctiles de contacto rápido.
 *   **Integración con WhatsApp Business:** Enlaces directos preconfigurados para facilitar la solicitud de turnos sin fricción.
-*   **Seguridad Primero:** Estructura limpia libre de API keys hardcodeadas y configuración preventiva en `.gitignore`.
+*   **Rendimiento Extremo:** Generación de sitio estático con Astro e hidratación parcial (islas React). Las imágenes de la galería están optimizadas en WebP.
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-*   **Framework:** React 19 (TypeScript)
-*   **Bundler:** Vite
-*   **Estilos:** Tailwind CSS + PostCSS + CSS Variables (diseño a medida)
-*   **Animaciones:** GSAP (GreenSock) + `@gsap/react`
+*   **Framework:** Astro 7 (SSG) + React 19 (islas)
+*   **Build:** Astro (Vite under the hood)
+*   **Estilos:** Tailwind CSS 3 + PostCSS + CSS Variables (diseño a medida)
+*   **Animaciones:** GSAP + `@gsap/react`
 *   **Iconografía:** Lucide React
+*   **Despliegue:** Docker (nginx:alpine)
 
 ---
 
@@ -34,18 +36,21 @@ Sitio web oficial de la **Barbería De-Vos** (Coria del Río, Sevilla), un espac
 
 ```bash
 De-Vos/
-├── public/                # Recursos estáticos (imágenes de la galería, favicons)
-│   └── galeria/           # Fotografías del local y cortes
+├── public/                # Recursos estáticos (imágenes galería, favicon SVG)
+│   ├── galeria/           # Fotografías del local y cortes (WebP optimizado)
+│   ├── favicon.svg
+│   └── icons.svg
 ├── src/
-│   ├── assets/            # Archivos vectoriales y assets importables
-│   ├── components/        # Componentes reutilizables globales (Navbar, Footer)
-│   ├── pages/             # Vistas principales (Home, Services, Contact)
+│   ├── components/        # Componentes React (islas con hidratación parcial)
+│   │   └── pages/         # Vistas principales (Home, Services, etc.)
+│   ├── layouts/           # Layout base de Astro (navbar, footer, SEO)
+│   ├── pages/             # Rutas Astro (9 páginas estáticas)
 │   ├── App.css            # Estilos globales y tipografías personalizadas
-│   ├── index.css          # Inicialización de Tailwind y variables de diseño
-│   └── main.tsx           # Punto de entrada de la aplicación
-├── eslint.config.js       # Configuración de ESLint (Reglas de Calidad de Código)
+│   └── index.css          # Inicialización de Tailwind y variables de diseño
+├── astro.config.mjs       # Configuración de Astro
 ├── tailwind.config.js     # Configuración de diseño Tailwind CSS
-└── vite.config.ts         # Configuración del servidor de desarrollo Vite
+├── Dockerfile             # Multi-stage build para producción
+└── nginx.conf             # Configuración de nginx con caching agresivo
 ```
 
 ---
@@ -54,36 +59,35 @@ De-Vos/
 
 ### Requisitos Previos
 
-Asegurate de tener instalado [Node.js](https://nodejs.org/) (versión 18 o superior recomendada).
+Node.js 22+.
 
-### 1. Clonar el repositorio
+### 1. Clonar e instalar
 ```bash
 git clone https://github.com/jukk4p/de-vos.git
 cd de-vos
-```
-
-### 2. Instalar dependencias
-```bash
 npm install
 ```
 
-### 3. Correr el servidor de desarrollo
+### 2. Servidor de desarrollo
 ```bash
 npm run dev
 ```
-La aplicación estará disponible localmente en `http://localhost:5173`.
+Disponible en `http://localhost:4321`.
 
-### 4. Construir para producción
-Para compilar y minificar el sitio para producción:
+### 3. Build producción
 ```bash
 npm run build
+npm run preview
 ```
-Los archivos optimizados se generarán en la carpeta `/dist`.
+Los archivos estáticos se generan en `/dist`.
 
 ---
 
-## 🔒 Buenas Prácticas & Seguridad
+## 🐳 Despliegue con Docker
 
-*   **Variables de entorno:** Si agregás servicios externos (como EmailJS o Firebase), hacelo usando variables de entorno (`.env`). Las plantillas `.env` y `.env.*` están configuradas en `.gitignore` para prevenir fugas accidentales.
-*   **Convención de Commits:** Este repositorio sigue la convención de commits tradicionales ([Conventional Commits](https://www.conventionalcommits.org/es/)) para mantener un historial limpio y legible.
+```bash
+docker build -t de-vos .
+docker run -d -p 8080:80 de-vos
+```
 
+El contenedor sirve el sitio estático con nginx (gzip activo, caching de assets inmutable para `/_astro/` y `/galeria/`).
