@@ -334,7 +334,7 @@ const HomePage = () => {
 
           <div className="mt-10 text-center">
             <a
-              href="https://search.google.com/local/writereview?ludocid=16653154385558997905"
+              href="https://www.google.com/maps/place/Barberia+De-Vos+Coria+del+r%C3%ADo/@37.2867497,-6.0512258,865m/data=!3m1!1e3!4m8!3m7!1s0xd1272c3e3814b81:0xe71be3ae74fb8b91!8m2!3d37.2867497!4d-6.0512258!9m1!1b1!16s%2Fg%2F11c1sz_hb6?entry=ttu&g_ep=EgoyMDI2MDYyMi4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 text-[10px] font-black uppercase tracking-industrial text-white hover:bg-accent hover:text-background transition-smooth"
