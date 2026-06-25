@@ -8,7 +8,7 @@
   :root {
     --background: #141313;
     --surface: #141313;
-    --accent: #D1A15E; /* Latón Cepillado (Industrial Luxury) - WCAG AAA 7.5:1 */
+    --accent: #A8B9C9; /* Polished Steel Silver (WCAG AAA - 9.7:1) */
     --primary: #c9c6c5;
     --on-surface: #e5e2e1;
   }
@@ -50,7 +50,7 @@
 
   /* Metallic Accent Glow */
   .accent-glow {
-    box-shadow: 0 0 30px rgba(233, 195, 73, 0.15);
+    box-shadow: 0 0 30px rgba(168, 185, 201, 0.15);
   }
 }
 

@@ -17,7 +17,7 @@ export default {
         },
         primary: '#c9c6c5', // Metallic Gray
         secondary: '#c8c6c5',
-        accent: '#D1A15E',   // Brushed Brass / Industrial Gold (AAA)
+        accent: '#A8B9C9',   // Polished Steel Silver (WCAG AAA)
         outline: '#8e9192',
       },
       fontFamily: {
