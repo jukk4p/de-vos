@@ -13,7 +13,7 @@ Sitio web oficial de la **Barbería De-Vos** (Coria del Río, Sevilla), un espac
 
 ## ✨ Características Principales
 
-*   **Estética Industrial & Premium:** Paleta de colores oscuros con acentos dorados/ocre industriales, tipografía moderna (`Inter` y `Manrope`) y un diseño de grilla estructurado.
+*   **Estética Industrial & Premium:** Paleta de colores oscuros con acentos de acero y plateado pulido, tipografía moderna (`Inter` y `Manrope`) y un diseño de grilla estructurado.
 *   **Animaciones Ultra-fluidas:** Implementación de GSAP (GreenSock) con `ScrollTrigger` y animaciones de parallax para una experiencia interactiva sofisticada.
 *   **Optimizado para Dispositivos Móviles:** Interfaz totalmente responsiva con menú lateral adaptado y botones flotantes táctiles de contacto rápido.
 *   **Integración con WhatsApp Business:** Enlaces directos preconfigurados para facilitar la solicitud de turnos sin fricción.
@@ -87,7 +87,7 @@ Los archivos estáticos se generan en `/dist`.
 
 ```bash
 docker build -t de-vos .
-docker run -d -p 8080:80 de-vos
+docker run -d -p 4321:4321 de-vos
 ```
 
 El contenedor sirve el sitio estático con nginx (gzip activo, caching de assets inmutable para `/_astro/` y `/galeria/`).
